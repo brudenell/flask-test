@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- 유저 목록 -->
+{% if user_list %}
+    <table>
+    {% for user in user_list %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.connection }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>유저 없음</p>
+{% endif %}
+<form action="/user/create" method="post">
+    <textarea name="name" id="name" rows="1"></textarea>
+    <input type="submit" value="유저등록">
+</form>
+{% endblock %}
