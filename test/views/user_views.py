@@ -21,4 +21,4 @@ def create():
     # 확인 필요
     db.session.add(user)
     db.session.commit()
-    return redirect(url_for('user._list'))
+    return "create"
