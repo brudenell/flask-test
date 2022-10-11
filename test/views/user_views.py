@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, url_for, request
 from werkzeug.utils import redirect
+from flask import jsonify
 
 from test import db
 from test.models import User
@@ -21,4 +22,4 @@ def create():
     # 확인 필요
     db.session.add(user)
     db.session.commit()
-    return "create"
+    return jsonify(id=user.id)
