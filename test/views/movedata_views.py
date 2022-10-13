@@ -13,7 +13,7 @@ def _list():
     return render_template('movedata/movedata_list.html', movedata_list=movedata_list)
 
 
-@bp.route('sac')
+@bp.route('/sac', methods=('POST',))
 def sac():
     name = request.form['name']
     user = User.query.filter_by(name=name).first()
