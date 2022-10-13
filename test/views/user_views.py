@@ -36,7 +36,7 @@ def connection():
     user = User.query.filter_by(name=name).first()
     user.connection = connection
     if connection == 1:
-        movedata = Movedata(user=user)
+        movedata = Movedata(user=user, latitude=0, longitude=0, speed=0)
         db.session.add(movedata)
     elif connection == 0:
         movedata = Movedata.query.filter_by(user_id=user.id).first()
