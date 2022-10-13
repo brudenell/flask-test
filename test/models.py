@@ -9,6 +9,7 @@ class User(db.Model):
 class Movedata(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'))
-    latitude = db.Column(db.String(20), nullable=False)
-    longitude = db.Column(db.String(20), nullable=False)
-    speed = db.Column(db.String(20), nullable=False)
+    user = db.relationship('User')
+    latitude = db.Column(db.String(20), nullable=True)
+    longitude = db.Column(db.String(20), nullable=True)
+    speed = db.Column(db.String(20), nullable=True)

@@ -3,7 +3,7 @@ from werkzeug.utils import redirect
 from flask import jsonify
 
 from test import db
-from test.models import User
+from test.models import User, Movedata
 
 bp = Blueprint('user', __name__, url_prefix='/user')
 
@@ -18,8 +18,28 @@ def _list():
 def create():
     name = request.form['name']
     connection = 0
-    user = User(name=name, connection=connection)
-    # 확인 필요
-    db.session.add(user)
+    exist_user = User.query.filter_by(name=name).first()
+    if not exist_user:
+        user = User(name=name, connection=connection)
+        # 확인 필요
+        db.session.add(user)
+        db.session.commit()
+        return jsonify(id=user.id, success=True)
+    else:
+        return jsonify(id=-1, success=False)
+
+
+@bp.route('/connection', methods=('POST',))
+def connection():
+    name = request.form['name']
+    connection = request.form['connection']
+    user = User.query.filter_by(name=name).first()
+    user.connection = connection
+    if connection == 1:
+        movedata = Movedata(user=user)
+        db.session.add(movedata)
+    elif connection == 0:
+        movedata = Movedata.query.filter_by(user_id=user.id).first()
+        db.session.delete(movedata)
     db.session.commit()
-    return jsonify(id=user.id)
+    return jsonify(id=user.id, success=True)

@@ -17,8 +17,9 @@ def create_app():
     from . import models
 
     #블루프린트
-    from .views import main_views, user_views
+    from .views import main_views, user_views, movedata_views
     app.register_blueprint(main_views.bp)
     app.register_blueprint(user_views.bp)
+    app.register_blueprint(movedata_views.bp)
 
     return app

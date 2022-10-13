@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<!-- 위치정보 목록 -->
+{% if movedata_list %}
+    <table>
+    {% for movedata in movedata_list %}
+        <tr>
+            <td>{{ movedata.id }}</td>
+            <td>{{ movedata.user_id }}</td>
+            <td>{{ movedata.user.name }}</td>
+            <td>{{ movedata.latitude }}</td>
+            <td>{{ movedata.longitude }}</td>
+            <td>{{ movedata.speed }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>위치정보 없음</p>
+{% endif %}
+{% endblock %}
