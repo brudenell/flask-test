@@ -22,4 +22,5 @@ def sac():
     movedata.longitude = float(request.form['longitude'])
     movedata.speed = request.form['speed']
     db.session.commit()
-    return jsonify(id=user.id, success=True)
+    movedata_list = Movedata.query.all()
+    return jsonify(movedata_list)
