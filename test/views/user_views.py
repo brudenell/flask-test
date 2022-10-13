@@ -35,11 +35,13 @@ def connection():
     connection = request.form['connection']
     user = User.query.filter_by(name=name).first()
     user.connection = connection
+    db.session.commit()
     if connection == 1:
         movedata = Movedata(user=user, latitude=0, longitude=0, speed=0)
         db.session.add(movedata)
+        db.session.commit()
     elif connection == 0:
         movedata = Movedata.query.filter_by(user_id=user.id).first()
         db.session.delete(movedata)
-    db.session.commit()
+        db.session.commit()
     return jsonify(id=user.id, success=True)
