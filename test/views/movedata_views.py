@@ -25,8 +25,9 @@ def sac():
     data = []
     md_list = Movedata.query.all()
     for md in md_list:
-        data.append({"user_id":md.user_id,
-                     "latitude":md.latitude,
-                     "longitude":md.longitude,
-                     "speed":md.speed})
+        if movedata.user_id != md.user_id:
+            data.append({"user_id":md.user_id,
+                         "latitude":md.latitude,
+                         "longitude":md.longitude,
+                         "speed":md.speed})
     return jsonify(data)
