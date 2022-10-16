@@ -8,5 +8,3 @@ SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
     pw=os.getenv('DB_PASSWORD'),
     url=os.getenv('DB_HOST'),
     db=os.getenv('DB_NAME'))
-SQLALCHEMY_TRACK_MODIFICATIONS = False
-SECRET_KEY = b'\xc4\xc2Ji\xc15W\xc8\xa4\x958S\x08\xefg\x14'
