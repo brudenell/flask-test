@@ -46,7 +46,7 @@ def disconnection():
     connection = request.form['connection']
     user = User.query.filter_by(name=name).first()
     user.connection = connection
-    movedata = User.query.filter_by(user_id=user.id).first()
+    movedata = Movedata.query.filter_by(user_id=user.id).first()
     db.session.delete(movedata)
     db.session.commit()
     return jsonify(id=user.id, success=True)
