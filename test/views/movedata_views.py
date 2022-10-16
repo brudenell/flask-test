@@ -22,11 +22,4 @@ def sac():
     movedata.longitude = float(request.form['longitude'])
     movedata.speed = request.form['speed']
     db.session.commit()
-    data = []
-    md_list = Movedata.query.all()
-    for md in md_list:
-        data.append({'user_id':md.user_id,
-                     'latitude':md.latitude,
-                     'longitude':md.longitude,
-                     'speed':md.speed})
-    return jsonify(data)
+    return jsonify(id=user.id, success=True)
